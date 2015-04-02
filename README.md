@@ -7,6 +7,8 @@ Unlike alternatives like Omegle, Instant Discourse:
   * incentivizes longer conversations by enforcing delays between conversations (not actually implemented right now)
   * enforces privacy by keeping no logs and sending all messages peer-to-peer
 
+There's a (half-baked) version live at https://instantdiscourse.com.
+
 ## Technical details:
 
 ### inside-out overview
