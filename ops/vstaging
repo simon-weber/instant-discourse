@@ -1,0 +1,14 @@
+discourse-vstaging ansible_ssh_host=127.0.0.1 ansible_ssh_port=3022 ansible_ssh_private_key_file=/Users/simonweber/.vagrant.d/insecure_private_key
+
+[appservers]
+discourse-vstaging
+
+[webservers]
+discourse-vstaging
+
+[redisservers]
+discourse-vstaging
+
+[deploytargets:children]
+appservers
+webservers

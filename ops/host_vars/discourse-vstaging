@@ -1,0 +1,9 @@
+vagrant: True
+dev: False
+appuser: vagrant
+appgroup: vagrant
+redis_bind: 127.0.0.1
+http_port: 8001
+static_scheme_netloc: //localhost:{{ http_port }}
+tornado_host: localhost
+tornado_port: 9001

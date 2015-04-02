@@ -1,0 +1,1 @@
+runscript: "{% raw %} InstantDiscourse('{{ '{{' }} tornado_host {{ '}}' }}', {{ '{{' }} tornado_port {{ '}}' }}); {% endraw %}"

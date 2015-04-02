@@ -1,0 +1,6 @@
+approot: "/opt/app"
+appdir: "/opt/app/code"
+venv: "{{ approot }}/venv"
+assetdir: "{{ approot }}/assets"
+deploydir: "{{ approot }}/deploy"
+app_args: ""

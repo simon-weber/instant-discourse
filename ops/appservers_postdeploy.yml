@@ -1,0 +1,10 @@
+---
+
+- hosts: appservers
+  remote_user: "{{ appuser }}"
+  tasks:
+    - name: install app dependencies
+      pip: requirements={{ appdir }}/requirements.txt virtualenv={{ venv }}
+
+    - name: init redis
+      command: "{{ venv }}/exec python {{ appdir }}/run_server.py init-redis"

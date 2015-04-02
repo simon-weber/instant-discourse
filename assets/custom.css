@@ -1,0 +1,43 @@
+/* Most of this cribbed from https://github.com/katranci/CSS/tree/master/Flexible%20Box%20Layout%20Module/chatroom */
+
+html, body {height: 100%;}
+
+#wrapper {
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-direction: column;
+    flex-direction: column;
+
+    height: 100%;
+}
+
+#wrapperTop {
+    -webkit-flex: 1;
+    flex: 1;
+
+    display: -webkit-flex;
+    display: flex;
+
+    height: 1px; /* grow from 1px in order to achieve the final size adapting to the rest of the available space in body */
+}
+
+#chatlog {
+    overflow-y: auto;
+    border-right: 1px solid rgb(200,209,219);
+    width: 70%;
+}
+
+#sidebar {
+    width: 30%;
+    min-width: 200px;
+}
+
+form {
+    border-top: 1px solid rgb(200,209,219);
+}
+
+form > input {
+    box-sizing: border-box;
+    width: 100%;
+}

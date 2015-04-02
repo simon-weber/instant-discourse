@@ -1,0 +1,21 @@
+---
+
+- hosts: appservers
+  remote_user: "{{ appuser }}"
+  roles:
+    - role: common
+    - role: EDITD.supervisormain
+    - role: testapp
+      when: dev
+    - role: serveassets
+      when: dev
+      tags: ['devbuild']
+    - ANXS.python
+    - runapp
+    - role: EDITD.supervisortask
+      name: tornado-app
+      command: "{{ venv }}/exec python run_server.py run {{ tornado_port }} {{ app_args }}"
+      directory: "{{ appdir }}"
+      user: "{{ appuser }}"
+      startretries: 100
+      stopsignal: TERM

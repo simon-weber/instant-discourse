@@ -1,0 +1,7 @@
+---
+
+- name: install html templates
+  template: src={{ item }}.html.j2 dest={{ assetdir }}/{{ item }}.html
+  with_items:
+      - index
+      - about

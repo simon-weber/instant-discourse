@@ -1,0 +1,13 @@
+---
+
+- name: template bashrc
+  template: src=bashrc.j2 dest=/home/{{ appuser }}/.bashrc
+
+- name: create index directory
+  file: path={{ indexdir }} state=directory owner={{ appuser }} group={{ appgroup }}
+  sudo: yes
+  tags: devbuild
+
+- name: install index template template
+  template: src=index.html.j2 dest={{ indexdir }}/index.html
+  tags: devbuild

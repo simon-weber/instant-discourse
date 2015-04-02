@@ -1,0 +1,23 @@
+---
+- include: chrome.yml
+
+- name: install unzip
+  apt: pkg=unzip state=present
+  sudo: yes
+
+- name: install xvfb
+  apt: pkg=xvfb state=present
+  sudo: yes
+
+- name: create directory for downloads
+  shell: mkdir -p {{ tmp_dir }} creates={{ tmp_dir }}
+
+- name: download chromedriver
+  get_url:
+    url=https://chromedriver.storage.googleapis.com/{{ chromedriver_version }}/chromedriver_linux{{ ansible_userspace_bits }}.zip
+    dest={{ tmp_dir }}/chromedriver-{{ chromedriver_version }}.zip
+
+- name: extract chromedriver from archive
+  shell: "unzip -p {{ tmp_dir }}/chromedriver-{{ chromedriver_version }}.zip chromedriver > {{ selenium_dir }}/chromedriver-{{ chromedriver_version}}; chmod +x {{ selenium_dir }}/chromedriver-{{ chromedriver_version}}"
+  args:
+      creates: "{{ selenium_dir }}/chromedriver-{{ chromedriver_version }}"

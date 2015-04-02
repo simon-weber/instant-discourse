@@ -1,0 +1,10 @@
+---
+dependencies:
+  - role: bayandin.selenium
+  - role: EDITD.supervisortask
+    name: xvfb
+    command: "Xvfb :10 -screen 0 800x600x8 -ac"
+    directory: "{{ appdir }}"
+    user: "{{ appuser }}"
+    startretries: 5
+    stopsignal: TERM

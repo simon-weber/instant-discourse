@@ -1,0 +1,9 @@
+---
+
+- hosts: redisservers
+  remote_user: "{{ appuser }}"
+  roles:
+    - role: common
+    - role: DavidWittman.redis
+      redis_bind: "{{ redis_bind }}"
+      sudo: yes

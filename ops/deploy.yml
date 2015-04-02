@@ -1,0 +1,46 @@
+---
+
+- hosts: deploytargets
+  remote_user: "{{ appuser }}"
+  tasks:
+      # this should all be in a run_once on the local host
+    - name: create stash to archive working copy
+      local_action: command git stash create
+      run_once: true
+      register: stash
+
+    - name: expand ref
+      local_action: command git rev-parse --verify {{ stash.stdout | default("HEAD", true) }}
+      run_once: true
+      register: revparse
+
+    - name: create git archive
+      command: git archive {{ revparse.stdout }} -o ops/{{ revparse.stdout }}.tar chdir=".."
+      delegate_to: 127.0.0.1
+      run_once: true
+    # up to here
+
+    - name: create deploy dir
+      file: path={{ deploydir }} state=directory owner={{ appuser }} group={{ appgroup }}
+      sudo: yes
+
+    - name: push deploy tar
+      copy: src={{revparse.stdout}}.tar dest={{ deploydir }}/{{revparse.stdout}}.tar owner={{ appuser }} group={{ appgroup }}
+
+    - name: remove old code
+      command: find {{ appdir }} -mindepth 1 -delete
+
+    - name: unpack new code
+      unarchive: copy=no src={{ deploydir }}/{{ revparse.stdout }}.tar dest={{ appdir }} owner={{ appuser }} group={{ appgroup }}
+
+    - name: move in assets
+      shell: rsync -arv {{ appdir }}/assets/* {{ assetdir }}
+
+    - name: restart processes
+      command: supervisorctl restart all
+      sudo: yes
+
+  roles:
+    - serveassets
+
+- include: post_deploy.yml

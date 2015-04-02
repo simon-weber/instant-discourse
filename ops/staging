@@ -1,0 +1,14 @@
+aws-staging ansible_ssh_host=ec2-54-175-161-98.compute-1.amazonaws.com ansible_ssh_port=22 ansible_ssh_private_key_file=/Users/simonweber/other/instant-discourse/simonmweberaws-root.cer
+
+[appservers]
+aws-staging
+
+[webservers]
+aws-staging
+
+[redisservers]
+aws-staging
+
+[deploytargets:children]
+appservers
+webservers

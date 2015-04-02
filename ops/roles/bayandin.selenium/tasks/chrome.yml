@@ -1,0 +1,26 @@
+---
+
+# source: http://michaelheap.com/ansible-installing-google-chrome/
+
+- name: test for google apt source
+  stat: path=/etc/apt/sources.list.d/google-chrome.list
+  register: apt_test
+
+- name: Add Google Chrome key
+  shell: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+  when: apt_test.stat.exists == False
+  sudo: yes
+
+- name: Add Google Chrome repo
+  copy: content="deb http://dl.google.com/linux/chrome/deb/ stable main" dest=/etc/apt/sources.list.d/google-chrome.list owner=root group=root mode=644
+  when: apt_test.stat.exists == False
+  sudo: yes
+
+- name: Update apt cache
+  apt: update_cache=yes
+  when: apt_test.stat.exists == False
+  sudo: yes
+
+- name: Install Google Chrome
+  apt: pkg=google-chrome-stable state=installed
+  sudo: yes

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Instant Discourse (alpha)</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Language" content="en-us">
+        <link href="{{ static_scheme_netloc }}/custom.css" rel="stylesheet" type="text/css">
+        <link href="{{ static_scheme_netloc }}/skeleton/skeleton.css" rel="stylesheet" type="text/css">
+        <link href="{{ static_scheme_netloc }}/skeleton/normalize.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="{{ static_scheme_netloc }}/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ static_scheme_netloc }}/peer.js"></script>
+        <script type="text/javascript" src="{{ static_scheme_netloc }}/instantdiscourse.js"></script>
+        <script>
+            {{ runscript }}
+        </script>
+    </head>
+
+    <body>
+        <div class="container" id="wrapper">
+
+            <div id="wrapperTop">
+                <section id="chatlog"> </section>
+                <section id="sidebar">
+                <div style="display: none;">
+                    Your id: <span id="pid"></span><br>
+                </div>
+                    Connected clients: <span id="num-clients"></span><br>
+                    <button id="get-partner">Connect</button>
+                    <button id="close" style="display: none;">Disconnect</button>
+                    <div id="partnertimeoutwrapper">
+                        Partner timed out?
+                        <span id="partnertimeout"> no</span>
+                    </div>
+                    <a href="{{ static_scheme_netloc }}/about.html">about</a>
+
+                </section>
+            </div>
+
+            <form id="send">
+                <input type="text" id="text" placeholder="Enter message">
+            </form>
+        </div>
+    </body>
+</html>

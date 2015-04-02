@@ -1,0 +1,9 @@
+vagrant: False
+dev: False
+appuser: ubuntu
+appgroup: ubuntu
+redis_bind: 127.0.0.1
+http_port: 443
+static_scheme_netloc: //instantdiscourse.com
+tornado_host: app.instantdiscourse.com
+tornado_port: 8080

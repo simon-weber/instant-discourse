@@ -1,0 +1,1 @@
+runscript: "InstantDiscourse('{{tornado_host}}', {{ http_port }});"

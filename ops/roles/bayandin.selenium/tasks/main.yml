@@ -1,0 +1,23 @@
+---
+- name: install jdk
+  apt: pkg=openjdk-7-jdk state=installed
+  sudo: yes
+
+- name: create directory for selenium
+  file: path={{ selenium_dir }} state=directory owner={{ appuser }} group={{ appgroup }}
+  sudo: yes
+
+- include: selenium.yml
+
+- include: chromedriver.yml
+  when: with_chromedriver
+
+- include: phantomjs.yml
+  when: with_phantomjs
+
+- name: create init script
+  template:
+    src=selenium.j2
+    dest=/etc/init.d/selenium
+    owner=root group=root mode=0755
+  sudo: yes

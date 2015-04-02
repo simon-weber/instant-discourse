@@ -1,0 +1,11 @@
+appuser: vagrant
+appgroup: vagrant
+vagrant: True
+dev: True
+app_args: "--debug --autoreload"
+redis_bind: 127.0.0.1
+http_port: 8000
+static_scheme_netloc: "//localhost:{{ http_port }}"
+tornado_host: localhost
+tornado_port: 9000
+indexdir: "{{ approot}}/indextemplate"
