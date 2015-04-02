@@ -7,9 +7,32 @@ Unlike alternatives like Omegle, Instant Discourse:
   * incentivizes longer conversations by enforcing delays between conversations (not actually implemented right now)
   * enforces privacy by keeping no logs and sending all messages peer-to-peer
 
-# Technical details:
+## Technical details:
 
-## duplicate message detection
+### inside-out overview
+
+- redis
+  - message hashes
+  - message hash bloom filter
+- tornado
+  - http
+    - /peerjs/id: allocates unique peerjs ids
+  - websocket
+    - peerjs signaling for webrtc
+    - chat signaling: getting a partner, reporting/checking message hashes, getting currently connected clients
+- nginx
+  - static files (ops/...html.j2)
+  - tls termination
+  - proxies to tornado
+- cloudflare
+  - instantdiscourse.com: https static files. served by cloudflare
+  - app.instantdiscourse.com: websocket connections. cloudflare passthrough since they don't currently support websockets
+- browser
+  - peerjs to simplify the webrtc connection
+  - a bunch of horrendous javascript for ui things
+
+
+### duplicate message detection
 
 To detect non-unique messages without keeping logs, clients report message hashes to the server.
 Message hashes have no metadata associated with them;
