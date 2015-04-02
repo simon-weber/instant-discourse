@@ -3,7 +3,7 @@
 Instant Discourse aims to provide intelligent stranger chat.
 Unlike alternatives like Omegle, Instant Discourse:
 
-  * decreases noise by penalizing users who say anything non-unique (ala [#xkcd-signal](blog.xkcd.com/2008/01/14/robot9000-and-xkcd-signal-attacking-noise-in-chat/))
+  * decreases noise by penalizing users who say anything non-unique (ala [#xkcd-signal](http://blog.xkcd.com/2008/01/14/robot9000-and-xkcd-signal-attacking-noise-in-chat/))
   * incentivizes longer conversations by enforcing delays between conversations (not actually implemented right now)
   * enforces privacy by keeping no logs and sending all messages peer-to-peer
 
