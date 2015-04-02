@@ -41,6 +41,7 @@ they can only answer "has message X ever been sent", not "who sent message X" or
 Hashes are peer-enforced to help prevent misreporting of fake hashes.
 Here's an example conversation:
 
+```
 alice                           server                          bob
    -- who's my partner? -------->    <------ who's my partner? --
    <------ bob is your partner --    -- alice is your partner -->
@@ -64,6 +65,7 @@ alice                           server                          bob
 
                           | check hash(yo!) |
    <------------- hash(yo!) non-unique! penalize bob ---------->
+```
 
 
 If any unmatched hashes exist at the end of a conversation, it's likely that one partner was lying.
